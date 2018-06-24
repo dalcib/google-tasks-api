@@ -3,6 +3,7 @@
   "version": "1.1.4",
   "description": "Google Tasks API for humans",
   "main": "dist/index.min.js",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "npm run build && karma start",
     "build": "rollup -c",
