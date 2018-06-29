@@ -103,23 +103,25 @@ declare module 'google-tasks-api' {
     nextPageToken?: string
   }
 
-  export default {
-    auth: any,
-    load: () => Promise,
-    isLoaded: () => bollean,
-    isSignedIn: () => bollean,
-    signIn: () => {},
-    loadClient: () => Promise,
-    authorize: (clientId: string, uxMode: string, redirectUri: any) => {},
-    logout: () => Promise,
-    listTaskLists: () => TaskLists,
-    insertTaskList: ({ title: string }) => TaskList,
-    updateTaskList: ({ taskListId: string, title: string }) => TaskList,
-    deleteTaskList: ({ taskListId: string }) => TaskList,
-    listTasks: (taskListId: string) => Tasks,
-    insertTask: ({ taskListId: string, ...Task }) => Task,
-    updateTask: ({ taskListId: string, taskId: string, ...Task }) => Task,
-    deleteTask: ({ taskListId: string, taskId: string }) => {},
+  interface gapi {
+    auth: any
+    load: () => Promise<void>
+    isLoaded: () => boolean
+    isSignedIn: () => boolean
+    signIn: () => {}
+    loadClient: () => Promise<any>
+    authorize: (clientId: string, uxMode: string, redirectUri: any) => Promise<any>
+    logout: () => Promise<any>
+    listTaskLists: () => TaskLists
+    insertTaskList: ({ title }: { title: string }) => TaskList
+    updateTaskList: ({ taskListId, title }: { taskListId: string; title: string }) => TaskList
+    deleteTaskList: ({ taskListId }: { taskListId: string }) => TaskList
+    listTasks: (taskListId: string) => Tasks
+    insertTask: ({ taskListId, ...Task }: { taskListId: string } & Task) => Task
+    updateTask: (
+      { taskListId, taskId, ...Task }: { taskListId: string; taskId: string } & Task
+    ) => Task
+    deleteTask: ({ taskListId, taskId }: { taskListId: string; taskId: string }) => {}
   }
   /* interface TasklistsResource {
     // Deletes the authenticated user's specified task list. 
